@@ -8,20 +8,24 @@ function reducer(state, action){
             return stateWithAllTheNotes
         case 'add-note':
             console.log(action.payload)
-            const newNote = action.payload;
+            const newNote = action.payload
             const newListOfNotesAddedOne = [...state.listOfNotes, newNote]
             const newStateAddNote = {
-                ...state, listOfNotes: newListOfNotesAddedOne
+                ...state, listOfNotes: newListOfNotesAddedOne``
             }
             return newStateAddNote
         case 'remove-note':
-            const newListOfNotesWithoutPayloadNote = state.listOfNotes.filter(note => note.id !== action.payload.id)
+            const newListOfNotesWithoutPayloadNote = state.listOfNotes.filter(note => note.id !== action.payload.id);
             const newStateWithNotesDeleted = {...state, listOfNotes: newListOfNotesWithoutPayloadNote}
             return newStateWithNotesDeleted
         case 'update-note':
-            const newListOfNotes = state.listOfNotes.filter(note => note.id !== action.payload.id)
-            const newListOfNotesWithModification = [...newListOfNotes, action.payload] 
-            const newStateModifiedCheckbox = {...state, listOfNotes: newListOfNotesWithModification}
+            const newListOfNotes = state.listOfNotes.map(note => {
+                if(note.id === action.payload.id){
+                    return action.payload
+                }
+                return note
+            })
+            const newStateModifiedCheckbox = {...state, listOfNotes: newListOfNotes}
             return newStateModifiedCheckbox
     }
 }
