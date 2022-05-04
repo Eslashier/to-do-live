@@ -9,12 +9,6 @@ const initialState = {
         done:false
     },
     listOfNotes:[
-        {
-            id: 0,
-            title:'Title by default',
-            message:'message by default',
-            done:true
-        },
     ]
 }
 
